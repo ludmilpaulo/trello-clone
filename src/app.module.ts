@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TrelloModule } from './trello/trello.module';
 
 @Module({
-  imports: [],
+  imports: [TrelloModule],
   controllers: [AppController],
   providers: [AppService],
 })
