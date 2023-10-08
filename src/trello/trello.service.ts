@@ -11,34 +11,29 @@ export class TrelloService {
     this.apiToken = process.env.TRELLO_API_TOKEN;
   }
 
-  // Fetch Trello boards
   async getBoards() {
     try {
-      // Make a GET request to Trello API to get boards
       const response = await axios.get(
         `https://api.trello.com/1/members/me/boards?key=${this.apiKey}&token=${this.apiToken}`,
       );
 
-      // Return the data received from the Trello API
       return response.data;
     } catch (error) {
-      // Handle errors, log, 
       throw error;
     }
   }
 
-  // Fetch tasks for a specific board
   async getTasks(boardId: string) {
     try {
-      // Make a GET request to Trello API to get tasks for the specified board
       const response = await axios.get(
-        `https://api.trello.com/1/boards/${boardId}/cards?key=${this.apiKey}&token=${this.apiToken}`,
+        `https://api.trello.com/1/boards/${boardId}/lists?key=${this.apiKey}&token=${this.apiToken}`,
       );
 
-      // Return the data received from the Trello API
+      console.log('response', response.data);
+
       return response.data;
     } catch (error) {
-      // Handle errors
+      console.error('Error fetching tasks:', error);
       throw error;
     }
   }
