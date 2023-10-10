@@ -37,4 +37,20 @@ export class TrelloService {
       throw error;
     }
   }
+
+  async addTask(listId: string, name: string, desc: string) {
+    try {
+      const response = await axios.post(
+        `https://api.trello.com/1/cards?idList=${listId}&name=${name}&desc=${desc}&key=${this.apiKey}&token=${this.apiToken}`,
+      );
+
+      console.log('Trello API Response:', response.data);
+
+      return response.data;
+    } catch (error) {
+      console.error('Error adding task:', error);
+
+      throw error;
+    }
+  }
 }
